@@ -53,7 +53,7 @@ func _changed_mode(mode : bool):
 
 func _spawn_powerup():
 	if r.randf() > 0.99:
-		if r.randf() > 0.5:
+		if r.randf() > 0.65:
 			
 			var new_juice = power_juice_resource.instance()
 			
@@ -73,6 +73,7 @@ func _enemy_killed():
 	_score += 1
 	$ScoreAnimator.play("Pop")
 	$CanvasLayer/ScoreLabel.text = str(_score)
+	player._total_energy += 10
 
 func _health_changed(new_health_percentage):
 	$WorldEnvironment.environment.adjustment_contrast = 1 + (1 - new_health_percentage) * -2

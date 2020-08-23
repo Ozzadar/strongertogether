@@ -43,8 +43,8 @@ func _ready():
 
 func _juice_pickup():
 	_total_energy = clamp(_total_energy + 25, 0, max_energy)
-	
 	$Camera2D.add_pop(0.5)
+	$Juice.play(0.0)
 	
 func _bullet_shot(new_bullet):
 	emit_signal("bullet_shot", new_bullet)
@@ -52,6 +52,8 @@ func _bullet_shot(new_bullet):
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
 	if is_dead():
+		#$Shots.stop()
+		$LazerSound.stop()
 		pink.dead = true
 		blue.dead = true
 		return
@@ -163,12 +165,16 @@ func _switch_mode(mode : bool):
 	_mode = mode
 	
 	if mode:
+		$LazerSound.play(0.0)
+		#$Shots.stop()		
 		_disable_shooting(true)
 		_switch_facing_direction(false)
 		tween.interpolate_property(self, '_translation', _translation, Vector2(0,75),0.1)
 		tween.start()
 	else:
 		_disable_shooting(false)
+		$LazerSound.stop()
+#		$Shots.play(0.0)		
 		
 		tween.interpolate_property(self, '_translation', _translation, Vector2(0, 150), 0.1)
 		tween.interpolate_property(self, 'rotation_degrees', rotation_degrees, 0.0, 0.1)
@@ -181,12 +187,7 @@ func _switch_mode(mode : bool):
 func _disable_shooting(is_disabled):
 	pink.shooting = !is_disabled
 	blue.shooting = !is_disabled
-	pass
-	
-func _fire_lazers():
-	
-	pass
-	
+		
 func _move(delta):
 	
 	rotation_degrees += _rotation_speed

@@ -16,6 +16,7 @@ func get_destroyed():
 	$PlayerDetector/Collision.set_deferred('disabled', true)
 	$CollisionShape2D.set_deferred('disabled', true)
 	$Explode.emitting = true
+	$AudioStreamPlayer2D.play(0.0)
 	$Timer.start()
 	pass
 	

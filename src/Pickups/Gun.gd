@@ -3,7 +3,7 @@ class_name Gun
 
 export(PackedScene) var bullet
 
-export (float) var fire_rate = 3.0; # bullets per second
+export (float) var fire_rate = 4.0; # bullets per second
 var _last_fired : float = 0.0
 
 func _physics_process(delta):

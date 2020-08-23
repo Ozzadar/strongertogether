@@ -6,6 +6,9 @@ const two = preload("res://Assets/Instructions/02.png")
 
 var page : int = 1
 
+func _ready():
+	$Panel/RetryButton.grab_focus()
+	
 func _start():
 	emit_signal("start")
 

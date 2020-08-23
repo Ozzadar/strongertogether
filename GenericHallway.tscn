@@ -9,15 +9,15 @@
 [ext_resource path="res://src/Enemy/Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Music/BoxCat_Games_-_16_-_Love_Of_My_Life.ogg" type="AudioStream" id=8]
 
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 64
-font_data = ExtResource( 3 )
-
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=3]
 background_mode = 4
 fog_color = Color( 0.501961, 0.6, 0.701961, 1 )
 tonemap_mode = 1
@@ -107,7 +107,7 @@ margin_left = 756.094
 margin_top = 20.9884
 margin_right = 912.094
 margin_bottom = 85.9884
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "SCORE:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -118,7 +118,7 @@ margin_left = 920.0
 margin_top = 23.0
 margin_right = 1084.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 autowrap = true
@@ -135,7 +135,7 @@ current = true
 script = ExtResource( 6 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 3 )
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -147,4 +147,5 @@ anims/Pop = SubResource( 4 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 autoplay = true
-attenuation = 3.24901
+max_distance = 1500.0
+attenuation = 2.2974

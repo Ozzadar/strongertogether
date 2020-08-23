@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Player/StrongerTogetherSingle_tex.png" type="Texture" id=1]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://src/Player/Blue.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Super/Super_tex.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Super/Super_ske.json" type="GDDragonBonesResource" id=7]
+[ext_resource path="res://Assets/SFX/lazer.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Assets/SFX/boom.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 45.0
@@ -111,4 +113,14 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 shape = SubResource( 3 )
+
+[node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+attenuation = 1.8025
+
+[node name="Juice" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -2.5
+max_distance = 1.0
+attenuation = 33.1285
 [connection signal="body_entered" from="EnemyDetector" to="." method="_enemy_detected"]

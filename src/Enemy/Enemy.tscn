@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Enemy/Enemy_ske.json" type="GDDragonBonesResource" id=1]
 [ext_resource path="res://Assets/Enemy/Enemy_tex.png" type="Texture" id=2]
 [ext_resource path="res://src/Enemy/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Assets/SFX/explode.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 28.0896
@@ -55,5 +56,8 @@ collision_layer = 2
 
 [node name="Collision" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="timeout" from="Timer" to="." method="_kill_myself"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_player_detected"]
