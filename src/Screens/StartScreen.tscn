@@ -1,0 +1,149 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/VT323-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/Screens/StartScreen.gd" type="Script" id=2]
+[ext_resource path="res://Assets/StrongerTogether.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Instructions/01.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+font_data = ExtResource( 1 )
+
+[node name="StartScreen" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -572.0
+margin_top = -197.502
+margin_right = 408.0
+margin_bottom = 272.498
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 31.0
+margin_top = 31.0
+margin_right = -695.0
+margin_bottom = -288.0
+custom_fonts/font = SubResource( 1 )
+text = "Stronger Together
+-----
+"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 543.0
+margin_top = 10.0
+margin_right = -33.0
+margin_bottom = -403.0
+custom_fonts/font = SubResource( 1 )
+text = "Controls
+-----"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 31.0
+margin_top = 80.0
+margin_right = -484.0
+margin_bottom = -21.0
+custom_fonts/font = SubResource( 2 )
+text = "When I think of family, I immediately think of my wife who supports me and genuinely makes me stronger.
+
+The idea was to work together to clear obstacles.
+
+You're tethered to your partner and must work together to make it through life's challenges.
+
+Created by Ozzadar
+http://godotdragonbones.com
+Music by BoxCat_Games @ FreeMusicArchive.org"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instruction" type="Sprite" parent="Panel"]
+position = Vector2( 743.591, 217.391 )
+scale = Vector2( 0.373232, 0.363627 )
+texture = ExtResource( 4 )
+
+[node name="Final" type="Label" parent="Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 545.997
+margin_top = 81.9187
+margin_right = -30.0034
+margin_bottom = -265.081
+custom_fonts/font = SubResource( 1 )
+text = "ARROW KEYS / DPAD == MOVE
+
+SPACE / A == ACTION"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RetryButton" type="Button" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -765.349
+margin_top = -43.874
+margin_right = -14.3495
+margin_bottom = -15.874
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 28.5732
+margin_top = -43.8741
+margin_right = 162.573
+margin_bottom = -15.874
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextInstruction" type="Button" parent="Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 831.666
+margin_top = -82.83
+margin_right = 965.666
+margin_bottom = -54.83
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Panel/RetryButton" to="." method="_start"]
+[connection signal="pressed" from="Panel/QuitButton" to="." method="_quit"]
+[connection signal="pressed" from="Panel/NextInstruction" to="." method="_next_page"]

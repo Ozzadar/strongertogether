@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Player/StrongerTogetherSingle_tex.png" type="Texture" id=1]
+[ext_resource path="res://src/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Player/StrongerTogetherSingle_ske.json" type="GDDragonBonesResource" id=3]
+[ext_resource path="res://src/Player/PINK.gd" type="Script" id=4]
+[ext_resource path="res://src/Player/Blue.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Super/Super_tex.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Super/Super_ske.json" type="GDDragonBonesResource" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 45.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 50.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 45.3506, 44.7601 )
+
+[node name="Player" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="DistanceLine" type="Line2D" parent="."]
+position = Vector2( 0, 3.1748 )
+points = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+width = 3.0
+default_color = Color( 0, 0.898039, 0.054902, 1 )
+
+[node name="EnergyLine" type="Line2D" parent="."]
+position = Vector2( 0, 3.1748 )
+points = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+width = 3.0
+default_color = Color( 0, 0.898039, 0.054902, 1 )
+
+[node name="PINK" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 150 )
+scale = Vector2( 0.5, 0.5 )
+collision_mask = 15
+script = ExtResource( 4 )
+lazer_color = Color( 2, 1.2, 1.99, 1 )
+
+[node name="Sprite" type="GDDragonBones" parent="PINK"]
+modulate = Color( 4, 2, 2, 1 )
+position = Vector2( 0, -0.000293065 )
+rotation = 3.14159
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 1 )
+resource = ExtResource( 3 )
+playback/curr_animation = "setPink"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PINK"]
+position = Vector2( 0, -3.8147e-06 )
+shape = SubResource( 1 )
+
+[node name="ShootDir" type="RayCast2D" parent="PINK"]
+enabled = true
+collision_mask = 0
+
+[node name="BulletSpawner" type="Node2D" parent="PINK"]
+position = Vector2( -4.75681, 50.2214 )
+
+[node name="Latchpoint" type="Node2D" parent="PINK"]
+position = Vector2( -109, -58.0504 )
+
+[node name="Blue" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -150 )
+scale = Vector2( 0.5, 0.5 )
+collision_mask = 2147483663
+script = ExtResource( 5 )
+lazer_color = Color( 1.24, 2, 2.94, 1 )
+up = false
+
+[node name="Sprite" type="GDDragonBones" parent="Blue"]
+modulate = Color( 2, 2, 4.5, 1 )
+position = Vector2( 0, -3.21887e-05 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 1 )
+resource = ExtResource( 3 )
+playback/curr_animation = "setBlue"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
+position = Vector2( -0.605713, 0.707127 )
+shape = SubResource( 2 )
+
+[node name="ShootDir" type="RayCast2D" parent="Blue"]
+enabled = true
+cast_to = Vector2( 0, -50 )
+collision_mask = 0
+
+[node name="BulletSpawner" type="Node2D" parent="Blue"]
+position = Vector2( -2.37842, -53.5143 )
+
+[node name="Latchpoint" type="Node2D" parent="Blue"]
+position = Vector2( 0.141418, 56.0988 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Super" type="GDDragonBones" parent="."]
+visible = false
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+resource = ExtResource( 7 )
+playback/speed = 0.75
+playback/play = true
+playback/curr_animation = "bounce"
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource( 3 )
+[connection signal="body_entered" from="EnemyDetector" to="." method="_enemy_detected"]

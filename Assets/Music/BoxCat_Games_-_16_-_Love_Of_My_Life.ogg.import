@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BoxCat_Games_-_16_-_Love_Of_My_Life.ogg-d33f875ee945fdf4ba262bdf707971f2.oggstr"
+
+[deps]
+
+source_file="res://Assets/Music/BoxCat_Games_-_16_-_Love_Of_My_Life.ogg"
+dest_files=[ "res://.import/BoxCat_Games_-_16_-_Love_Of_My_Life.ogg-d33f875ee945fdf4ba262bdf707971f2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

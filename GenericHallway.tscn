@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/EnemySpawner/EnemySpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/VT323-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://GenericHallway.gd" type="Script" id=4]
+[ext_resource path="res://Assets/BG.png" type="Texture" id=5]
+[ext_resource path="res://Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://src/Enemy/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Music/BoxCat_Games_-_16_-_Love_Of_My_Life.ogg" type="AudioStream" id=8]
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+fog_color = Color( 0.501961, 0.6, 0.701961, 1 )
+tonemap_mode = 1
+tonemap_white = 16.0
+glow_enabled = true
+glow_intensity = 0.1
+glow_bloom = 1.0
+glow_blend_mode = 0
+glow_hdr_luminance_cap = 12.25
+glow_hdr_scale = 0.0
+glow_bicubic_upscale = true
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=4]
+resource_name = "Pop"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ScoreLabel:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 96, 64 ]
+}
+
+[node name="GenericHallway" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Juice" type="Node" parent="."]
+
+[node name="Screen" type="Node" parent="."]
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="EnemySpawner" parent="Spawners" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 192.434, 156.798 )
+enemy = ExtResource( 7 )
+speed = -1
+
+[node name="EnemySpawner2" parent="Spawners" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 192.434, 156.798 )
+enemy = ExtResource( 7 )
+
+[node name="EnemySpawner3" parent="Spawners" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 192.434, 156.798 )
+enemy = ExtResource( 7 )
+speed = 2
+
+[node name="EnemySpawner4" parent="Spawners" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 192.434, 156.798 )
+enemy = ExtResource( 7 )
+speed = -2
+
+[node name="EnemySpawner5" parent="Spawners" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 192.434, 156.798 )
+enemy = ExtResource( 7 )
+speed = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_offset = Vector2( 0, 900 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 756.094
+margin_top = 20.9884
+margin_right = 912.094
+margin_bottom = 85.9884
+custom_fonts/font = SubResource( 2 )
+text = "SCORE:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+margin_left = 920.0
+margin_top = 23.0
+margin_right = 1084.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 960, 540 )
+z_index = -1
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+script = ExtResource( 6 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="ScoreAnimator" type="AnimationPlayer" parent="."]
+anims/Pop = SubResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+attenuation = 3.24901

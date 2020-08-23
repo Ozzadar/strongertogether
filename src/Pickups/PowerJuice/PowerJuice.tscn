@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/PowerJuice/PowerJuice_tex.png" type="Texture" id=1]
+[ext_resource path="res://Assets/PowerJuice/PowerJuice_ske.json" type="GDDragonBonesResource" id=2]
+[ext_resource path="res://Assets/PowerJuice/library/powerjuice.png" type="Texture" id=3]
+[ext_resource path="res://src/Pickups/PowerJuice/PowerJuice.gd" type="Script" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.533333, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 41.04, 0.04, 4.62, 1, 0.780801, 0.485058, 0.844727, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 100, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -30, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.00740741, 0.244444, 0.792593, 1 )
+colors = PoolColorArray( 0.0117647, 0, 0.0117647, 0, 0.39, 0.03, 9.83, 1, 0.770254, 0.633532, 0.840332, 1, 0.94902, 0.921569, 0.964706, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.492045 ), 0.0, -0.124901, 0, 0, Vector2( 0.974684, 0.492045 ), -3.25944, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 5, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, -4, 0 )
+initial_velocity = 60.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.59
+angle = 140.0
+angle_random = 1.0
+scale = 0.25
+scale_random = 0.16
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 78.8749
+
+[node name="PowerJuice" type="Node2D"]
+scale = Vector2( 0.25, 0.25 )
+script = ExtResource( 4 )
+
+[node name="SparkleEffect" type="Particles2D" parent="."]
+position = Vector2( 0, 0.44545 )
+randomness = 0.51
+process_material = SubResource( 3 )
+
+[node name="SparkleEffect2" type="Particles2D" parent="."]
+modulate = Color( 1.4, 0.6, 1.9, 1 )
+position = Vector2( 0.749146, -0.303711 )
+emitting = false
+amount = 50
+lifetime = 2.0
+one_shot = true
+preprocess = 0.25
+speed_scale = 3.8
+explosiveness = 1.0
+randomness = 0.51
+process_material = SubResource( 8 )
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -0.840897 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 9 )
+
+[node name="Sprite" type="GDDragonBones" parent="."]
+modulate = Color( 2.31, 1, 2.31, 1 )
+texture = ExtResource( 1 )
+resource = ExtResource( 2 )
+playback/play = true
+playback/curr_animation = "animtion0"
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

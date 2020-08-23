@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BoxCat_Games_-_16_-_Love_Of_My_Life.wav-4bd877edeebded4ec02bdc87f7051c7e.sample"
+
+[deps]
+
+source_file="res://Assets/Music/BoxCat_Games_-_16_-_Love_Of_My_Life.wav"
+dest_files=[ "res://.import/BoxCat_Games_-_16_-_Love_Of_My_Life.wav-4bd877edeebded4ec02bdc87f7051c7e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

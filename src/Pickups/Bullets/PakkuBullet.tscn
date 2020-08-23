@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/PakkuGun/PakkuGun_tex.png" type="Texture" id=1]
+[ext_resource path="res://Assets/PakkuGun/PakkuGun_ske.json" type="GDDragonBonesResource" id=2]
+[ext_resource path="res://src/Pickups/Bullets/PakkuBullet.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.08037
+height = 6.11835
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="PakkuBullet" type="KinematicBody2D"]
+rotation = 0.00185777
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.55063
+shape = SubResource( 1 )
+
+[node name="GDDragonBones" type="GDDragonBones" parent="."]
+modulate = Color( 2, 2, 1, 1 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 1 )
+resource = ExtResource( 2 )
+playback/play = true
+playback/curr_animation = "shoot"
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="EnemyDetector" to="." method="_enemy_detected"]
