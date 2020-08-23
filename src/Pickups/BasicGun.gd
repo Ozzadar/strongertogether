@@ -1,4 +1,4 @@
-extends Gun
+extends "res://src/Pickups/Gun.gd"
 
 func shoot() -> Node2D :
 	.shoot()

@@ -1,4 +1,4 @@
-extends PlayerShip
+extends "res://src/Player/PlayerShip.gd"
 
 func _ready():
 	#get_node("Sprite").fade_in("Idle", -1, -1, 2, '', GDDragonBones.FadeOut_None)
